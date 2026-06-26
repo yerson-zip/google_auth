@@ -23,7 +23,7 @@ oauth.register(
 
 @app.get("/auth/google")
 async def auth_google(request:Request):
-    return await oauth.google.authorize_redirect(request,redirect_uri="http://localhost:8000/auth/google/callback")
+    return await oauth.google.authorize_redirect(request,redirect_uri="https://google-auth-cbnp.onrender.com/auth/google/callback")
 
 @app.get("/auth/google/callback")
 async def google_callback(request:Request):
