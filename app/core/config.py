@@ -1,0 +1,12 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+db_url = os.getenv("DATABASE_URL")
+GOOGLE_CLIENTE_ID = os.getenv("GOOGLE_CLIENTE_ID")
+GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+SECRET_KEY= os.getenv("SECRET_KEY")
+ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
+ALGORITHM= os.getenv("ALGORITHM")
+REFRESH_TOKEN_EXPIRE_DAYS = os.getenv("REFRESH_TOKEN_EXPIRE_DAYS")
