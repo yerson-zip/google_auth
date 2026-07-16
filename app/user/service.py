@@ -33,7 +33,7 @@ def get_user_by_email(db:Session, email:str)-> type[User]:
     user = db.query(User).filter(User.email==email).first()
 
     if user is None:
-        raise error_400
+        return None
 
     return user
 

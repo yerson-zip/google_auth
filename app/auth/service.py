@@ -5,7 +5,6 @@ from fastapi import HTTPException, Request
 from jose import jwt, JWTError
 from datetime import datetime, timezone, timedelta
 
-from pydantic_settings.sources.providers import secrets
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -105,12 +104,16 @@ def refresh_token(user_id:int,refresh_token:str, db:Session)->dict:
         "refresh_token": new_refresh_token
     }
 
-async def google_info(request:Request)-> dict :
+async def google_info(request:Request) :
     try:
         token = await oauth.google.authorize_access_token(request)
-        user_info= token.get("userinfo")
+        user_info= token.get("userinfo") or {}
 
-        return user_info
+        return {
+            "email":user_info.get("email"),
+            "full_name": user_info.get("name"),
+            "picture":user_info.get("picture")
+        }
 
     except Exception as e:
         raise {"error": str(e)}
